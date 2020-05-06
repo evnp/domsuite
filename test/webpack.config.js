@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 const path = require(`path`);
+const webpack = require(`webpack`);
 
 const webpackConfig = {
   entry: path.join(__dirname, `index.js`),
@@ -9,6 +10,7 @@ const webpackConfig = {
     filename: `tests.bundle.js`,
     pathinfo: true,
   },
+  devtool: 'eval-source-map',
   mode: `development`,
   module: {
     rules: [
@@ -19,7 +21,8 @@ const webpackConfig = {
           {
             loader: `babel-loader`,
             options: {
-              presets: [`env`],
+              presets: [`@babel/preset-env`],
+              plugins: [`@babel/plugin-transform-runtime`]
             },
           },
         ],

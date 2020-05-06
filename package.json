@@ -32,12 +32,14 @@
   },
   "homepage": "https://github.com/mixpanel/domsuite#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "lodash": "4.17.10",
     "platform": "1.3.5",
     "sinon": "6.1.5"
   },
   "devDependencies": {
-    "@babel/core": "7.1.2",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "babel-cli": "6.26.0",
     "babel-loader": "8.0.4",
     "babel-plugin-transform-object-rest-spread": "6.26.0",
