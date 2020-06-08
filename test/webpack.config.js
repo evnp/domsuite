@@ -27,6 +27,21 @@ const webpackConfig = {
           },
         ],
       },
+      {
+        test: /\.ts$/,
+        exclude: /(node_modules)/,
+        use: [
+          {
+            loader: `babel-loader`,
+          },
+          {
+            loader: `ts-loader`,
+            options: {
+              happyPackMode: true,
+            },
+          },
+        ],
+      },
     ],
   },
   watch: !!process.env.WATCH,

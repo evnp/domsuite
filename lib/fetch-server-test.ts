@@ -1,6 +1,6 @@
-import isFunction from 'lodash/isFunction';
-import intersection from 'lodash/intersection';
-import difference from 'lodash/difference';
+import * as isFunction from 'lodash/isFunction';
+import * as intersection from 'lodash/intersection';
+import * as difference from 'lodash/difference';
 
 import * as sinon from 'sinon';
 
@@ -20,26 +20,12 @@ const VALID_METHODS = [`GET`, `POST`, `PATCH`, `PUT`, `DELETE`];
  * fetchServer.start();
  * const res = await fetch('https://myserver/foo.json');
  * const val = await res.json(); // 'bar'
- * 
- * @example 
- * You can also have the following handler types where key is any of the HTTP methods
- * const handler = {
- *   '/foo/bar`: {
- *      GET: {
- *        'content-type': 'application/json',
- *        'status': 200,
- *        'result': {}
- *      },
- *      // Takes a non-async function, and creates Promise
- *      POST: (url, params) => ({
- *        'content-type': 'text/html',
- *        'status': 200,
- *        'result': {}
- *      })
- *   }
- * }
  */
+
 export class FetchServer {
+  handlers: object;
+  debug: boolean;
+
   constructor(handlers, { debug = false } = {}) {
     this.handlers = handlers;
     this.debug = debug;
@@ -47,7 +33,6 @@ export class FetchServer {
   }
 
   handle(url, params) {
-    // default method GET
     const HTTPmethod = params.method || `GET`;
     let response;
     for (const [route, handler] of Object.entries(this.handlers)) {
